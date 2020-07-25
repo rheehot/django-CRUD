@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse
 from article.models import Article
 
 # Create your views here.
@@ -20,7 +20,8 @@ def create(request):
     article = Article.objects.create(title=title, content=content)
 
     pk = article.id
-    return redirect(to='/article/{}'.format(pk))
+    url = reverse('article:retrieve', kwargs={'pk': pk})
+    return redirect(to=url)
 
 def retrieve(request, pk):
     article = Article.objects.get(id=pk)
