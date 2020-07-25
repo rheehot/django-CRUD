@@ -8,5 +8,6 @@ class Article(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    # 터미널에서 보이기 위해서 쓰는 함수
     def __str__(self):
         return '{}. {}'.format(self.id, self.title)

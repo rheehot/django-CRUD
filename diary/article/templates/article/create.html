@@ -7,9 +7,20 @@
 <body>
     <h1>일기 쓰기</h1>
 
-    <form action='/create' method='POST'>
+    <form action='/create/' method='POST'>
+        {% csrf_token %}
+
+        제목:
         <input type="text" name="title" />
+        <br />
+        <br />
+
+        내용:
         <textarea name="content"></textarea>
+        <br />
+        <br />
+
+        <input type="submit" value="글쓰기" />
     </form>
 </body>
 </html>

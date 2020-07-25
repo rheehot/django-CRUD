@@ -1,0 +1,17 @@
+<h1>일기 수정하기</h1>
+
+    <form action="/update/{{ article.id }}" method='POST'>
+        {% csrf_token %}
+
+        제목:
+        <input type="text" name="title" value="{{ article.title }}"/>
+        <br />
+        <br />
+
+        내용:
+        <textarea name="content">{{ article.content }}</textarea>
+        <br />
+        <br />
+
+        <input type="submit" value="수정하기" />
+    </form>
