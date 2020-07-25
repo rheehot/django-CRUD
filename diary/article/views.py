@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, reverse
 from article.models import Article
 
-# Create your views here.
+# INDEX
 def index(request):
     queryset = Article.objects.all()
     context = {
@@ -9,6 +9,7 @@ def index(request):
     }
     return render(request, 'article/index.html', context=context)
 
+# CREATE
 def create(request):
     # GET 일때
     if request.method == 'GET':
@@ -23,6 +24,7 @@ def create(request):
     url = reverse('article:retrieve', kwargs={'pk': pk})
     return redirect(to=url)
 
+# RETRIEVE
 def retrieve(request, pk):
     article = Article.objects.get(id=pk)
 
@@ -32,6 +34,7 @@ def retrieve(request, pk):
 
     return render(request, 'article/retrieve.html', context=context)
 
+# UPDATE
 def update(request, pk):
     article = Article.objects.get(id=pk)
 
@@ -51,10 +54,13 @@ def update(request, pk):
     article.content = content
     article.save()
 
-    return redirect(to='/article/{}'.format(pk))
+    url = reverse('article:retrieve', kwargs={'pk': pk})
+    return redirect(to=url)
 
+# DELETE
 def delete(request, pk):
     article = Article.objects.get(id=pk)
     article.delete()
 
+    url = reverse('article:list')
     return redirect(to='/')
