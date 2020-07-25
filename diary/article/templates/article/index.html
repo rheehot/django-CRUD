@@ -9,7 +9,9 @@
 
     <ul>
     {% for article in articles %}
-        <li>{{ article }}</li>
+        <li>
+            <a href="{% url 'article:retrieve' pk=article.pk %}">{{ article }}</a>
+        </li>
     {% endfor %}
     </ul>
 </body>
